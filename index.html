@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chess Clock</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <div class="header__branding">
+          <p class="eyebrow">Portable chess clock</p>
+          <h1>Clock</h1>
+        </div>
+        <div class="header__actions">
+          <div id="status" class="status-chip">Ready</div>
+        </div>
+      </header>
+
+      <section class="clock">
+        <button
+          class="player player--one"
+          data-player="0"
+          aria-label="Player one clock"
+        >
+          <span class="player__label">White</span>
+          <span id="time-0" class="player__time">15:00</span>
+          <span id="increment-0" class="player__increment">+10s</span>
+        </button>
+
+        <button
+          class="player player--two"
+          data-player="1"
+          aria-label="Player two clock"
+        >
+          <span class="player__label">Black</span>
+          <span id="time-1" class="player__time">15:00</span>
+          <span id="increment-1" class="player__increment">+10s</span>
+        </button>
+      </section>
+
+      <section class="controls">
+        <div class="presets" role="group" aria-label="Time control presets">
+          <button class="preset" data-preset="classical">Classical 90+30</button>
+          <button class="preset" data-preset="rapid">Rapid 15+10</button>
+          <button class="preset" data-preset="standard">Standard 10+0</button>
+          <button class="preset" data-preset="blitz">Blitz 5+3</button>
+          <button class="preset" data-preset="bullet">Bullet 1+1</button>
+        </div>
+
+        <form class="custom" id="custom-form">
+          <div class="custom__inputs">
+            <label class="field">
+              <span>Minutes per side</span>
+              <input
+                type="number"
+                name="minutes"
+                min="1"
+                max="180"
+                step="1"
+                value="15"
+                required
+              />
+            </label>
+            <label class="field">
+              <span>Increment (seconds)</span>
+              <input
+                type="number"
+                name="increment"
+                min="0"
+                max="60"
+                step="1"
+                value="10"
+                required
+              />
+            </label>
+          </div>
+          <button type="submit" class="button ghost">Apply Custom</button>
+        </form>
+
+        <div class="cta-row">
+          <button id="startPause" class="button primary">Start</button>
+          <button id="reset" class="button">Reset</button>
+          <button id="swap" class="button ghost">Swap</button>
+        </div>
+      </section>
+
+      <div
+        id="resetModal"
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="resetModalTitle"
+        aria-hidden="true"
+      >
+        <div class="modal__panel">
+          <p class="modal__eyebrow">Need a break?</p>
+          <h2 class="modal__title" id="resetModalTitle">Reset the clock?</h2>
+          <p class="modal__body">This stops the game and restores your current time control.</p>
+          <div class="modal__actions">
+            <button id="cancelReset" class="button ghost">Keep playing</button>
+            <button id="confirmReset" class="button primary">Reset</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
