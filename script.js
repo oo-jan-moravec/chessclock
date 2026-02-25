@@ -30,8 +30,6 @@ const incrementEls = [
 ];
 const statusEl = document.getElementById("status");
 const startPauseBtn = document.getElementById("startPause");
-const resetBtn = document.getElementById("reset");
-const swapBtn = document.getElementById("swap");
 const presetButtons = [...document.querySelectorAll(".preset")];
 const customForm = document.getElementById("custom-form");
 const resetModal = document.getElementById("resetModal");
@@ -73,8 +71,6 @@ function bindEvents() {
   });
 
   startPauseBtn.addEventListener("click", toggleStart);
-  resetBtn.addEventListener("click", requestReset);
-  swapBtn.addEventListener("click", swapPlayers);
   confirmResetBtn.addEventListener("click", confirmReset);
   cancelResetBtn.addEventListener("click", closeResetModal);
   resetModal.addEventListener("click", (event) => {
