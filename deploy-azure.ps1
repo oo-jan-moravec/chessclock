@@ -115,21 +115,20 @@ if (-not $SkipResourceCreation) {
     }
 }
 
-Write-Host "Enabling static website hosting..." -ForegroundColor Yellow
-az storage blob service-properties update `
-    --account-name $StorageAccountName `
-    --resource-group $ResourceGroup `
-    --static-website `
-    --index-document $IndexDocument `
-    --404-document $ErrorDocument `
-    --output none
-Write-Host "  Static website configured." -ForegroundColor Green
-
 $connectionString = az storage account show-connection-string `
     --name $StorageAccountName `
     --resource-group $ResourceGroup `
     --query connectionString `
     --output tsv
+
+Write-Host "Enabling static website hosting..." -ForegroundColor Yellow
+az storage blob service-properties update `
+    --connection-string $connectionString `
+    --static-website `
+    --index-document $IndexDocument `
+    --404-document $ErrorDocument `
+    --output none
+Write-Host "  Static website configured." -ForegroundColor Green
 
 if (-not $SkipUpload) {
     Write-Host ""
